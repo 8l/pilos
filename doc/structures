@@ -1,0 +1,66 @@
+
+   ### Virtual Memory ###
+
+                Top  +-------------+
+                     |    Stack    |
+                     |      |      |
+                     |      v      |
+                     |             |
+                     |             |
+                     |             |
+                     |      ^      |
+                     |      |      |
+                     |    Heap     |
+            1000000  +-------------+
+                     |             |
+             E00000  +-------------+
+                     |             |
+             C00000  +-------------+
+                     |             |
+             A00000  +-------------+
+                     |             |
+             800000  +-------------+
+                     |             |
+             600000  +-------------+
+                     |   IO-APIC   |
+             400000  +-------------+
+                     |    APICs    |
+             200000  +-------------+
+                     |  BIOS Data  |
+              80000  +-------------+
+                     | Page Tables |
+              60000  +-------------+
+                     |  PicoLisp   |
+                     |    Code     |
+               7C00  +-------------+
+                     |   Scratch   |
+               0500  +-------------+
+                     |  BIOS Data  |
+               0000  +-------------+
+
+
+   ### Stack ###
+
+      Input frame:
+                           ^
+         <VIII>   buf[siz] |
+         <VII>    ix       |
+         <VI>     cnt      |
+         <V>      link     |
+         <IV>     blk      |
+         <III>    next     |
+         <II>     get      |
+         <I>      dbFile   |
+                  LINK ----+  <-- inFrames
+
+      Output frame:
+                           ^
+         <VIII>   buf[siz] |
+         <VII>    ix       |
+         <VI>     cnt      |
+         <V>      link     |
+         <IV>     blk      |
+         <III>    blk1     |
+         <II>     put      |
+         <I>      dbFile   |
+                  LINK ----+  <-- outFrames

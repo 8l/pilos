@@ -1,0 +1,6 @@
+(task -4000 0  N 0  (msg (cons (inc 'N) (* N N))))
+(hex (ptr32 (hex "2000F0")))
+(hd "62000" 8)
+(dir "misc")
+(load "misc/fibo.l") (bench (fibo 36))
+(load "misc/bench.l")
